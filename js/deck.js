@@ -45,6 +45,38 @@ class Pile {
     	}
 		return this.cards;
 	}
+
+	remove(number,fromTop) {
+		fromTop = (fromTop == false) ? false : true;
+		let removedCards = [];
+		for (var i = 0; i < number; i++) {
+			let topCard = fromTop ? this.cards.shift() : this.cards.pop();
+			removedCards.push(topCard);
+		}
+		return removedCards;
+	}
+
+	add(cards,toTop){
+		toTop = (toTop == false) ? false : true;
+		if (!(Array.isArray(cards))){
+			cards = [cards];
+		}
+		for (var i = 0; i <= cards.length - 1; i++) {
+			if (!(cards[i] instanceof Card)){
+				throw 'Attempted to add a non-Card element to Pile!';
+			}
+			if (toTop){
+				this.cards.unshift(cards[i]);
+			} else {
+				this.cards.push(cards[i]);
+			}
+		}
+		return this.cards;
+	}
+
+	draw(number){
+		return this.remove(number);
+	}
 }
 
 class StandardDeck extends Pile{
