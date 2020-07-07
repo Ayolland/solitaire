@@ -1,7 +1,3 @@
-String.prototype.capitalize = function () {
-	return this.charAt(0).toUpperCase() + this.slice(1);
-}
-
 class Suit {
 	constructor(name,symbol,value) {
 		this.name = name;
@@ -18,11 +14,29 @@ class Card {
 		this.shortName = shortName;
 		this.value = value;
 	}
+
+	generateElement(){
+		let element = document.createElement("div");
+		element.classList.add('card',this.suit.name,this.name);
+		let inner = document.createElement("div");
+		inner.classList.add('card-inner');
+		element.appendChild(inner);
+		let front = document.createElement("div");
+		front.classList.add('card-front');
+		inner.appendChild(front);
+		let innerText = document.createTextNode(this.shortName);
+		front.appendChild(innerText);
+		let back = document.createElement("div");
+		back.classList.add('card-back');
+		inner.appendChild(back);
+		this.HTMLElement = element;
+		return element;
+	}
 }
 
 class Pile {
 	constructor(cards) {
-		this.cards = cards;
+		this.cards = cards || [];
 	}
 
 	sort(){
@@ -86,7 +100,7 @@ class StandardDeck extends Pile{
 			new Suit('spades','♠','4'),
 			new Suit('hearts','♥','3'),
 			new Suit('clubs','♣','2'),
-			new Suit('diamonds','♦','1'),
+			new Suit('diamonds','♦','1')
 		];
 		let standardNames = [
 			"ace","two","three","four","five","six","seven","eight","nine","ten","jack","queen","king"

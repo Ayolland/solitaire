@@ -1,0 +1,59 @@
+.card{
+	display: block;
+
+	width: 20%;
+	height: 20%;
+
+	perspective: $perspecive-distance;
+
+	.card-inner{
+		position: relative;
+		width: calc(100% - #{$card-gutter * 2});
+		height: calc(100% - #{$card-gutter * 2});
+		margin: $card-gutter;
+		
+
+		
+
+		transition: transform 0.5s;
+		transform-style: preserve-3d;
+
+		.card-back, .card-front{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			border-radius: $card-gutter;
+
+			-webkit-backface-visibility: hidden; /* Safari */
+			backface-visibility: hidden;
+		}
+
+		.card-back{
+			transform: rotateY(180deg);
+			background-color: $gray;
+		}
+
+		.card-front{
+			background-color: $eggshell;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+		}
+	}
+
+	&.spades, &.clubs{
+		color: $black;
+	}
+
+	&.hearts, &.diamonds{
+		color: $red;
+	}
+
+	&:hover, &.face-down, &{
+		.card-inner{
+			transform: rotateY(180deg);
+		}
+	}
+}

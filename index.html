@@ -4,11 +4,35 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>Match-3 Solitaire</title>
-		<!-- <link rel="stylesheet" href="stylesheet.css" type="text/css"> -->
+		<link rel="stylesheet" href="css/app.css" type="text/css">
 	</head>
 	<body>
+
+		<div class="game">
+			<div class="top-UI">
+				<div class="deck">
+				</div>
+				<div class="hand">
+				</div>
+				<div class="discard">
+				</div>
+			</div>
+			<div class="playfield">
+			</div>
+		</div>
 		
 		<script src="js/seedrandom.min.js"></script>
+		<script src="js/helpers.js"></script>
 		<script src="js/deck.js"></script>
+		<script src="js/turnmanager.js"></script>
+		<script>
+			let testDeck = new StandardDeck(Date.now());
+			let playfield = document.querySelector('.playfield');
+			let cards = testDeck.draw(25);
+			cards.forEach(function(card){
+				let element = card.generateElement();
+				playfield.appendChild(element);
+			});
+		</script>
 	</body>
 </html>
